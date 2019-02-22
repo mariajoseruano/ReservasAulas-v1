@@ -13,7 +13,7 @@ import java.util.Objects;
  */
 public class Profesor {
     
-        private static final String ER_TELEFONO="[69][0-9]{8}";
+        private static final String ER_TELEFONO="\\d{9}";
         private static final String ER_CORREO="\\w+(?:\\.\\w+)*@\\w+\\.\\w{2,5}";
         private String nombre;
         private String correo;
@@ -75,24 +75,23 @@ public class Profesor {
                 
         }
         
+        
          public void setTelefono ( String telefono)throws IllegalArgumentException 
         {
-            if (telefono!=null)
-                
-                throw new IllegalArgumentException("El teléfono no puede ser nulo.");
-                
-            if (!(telefono.matches(ER_TELEFONO)))
-            
-                throw new IllegalArgumentException("El teléfono del profesor no es válido.");
-            
-            
-            this.telefono=telefono;
+            if (telefono != null) {
+			if (telefono.matches(ER_TELEFONO)) {
+				this.telefono = telefono;
+			} else {
+				throw new IllegalArgumentException("El teléfono del profesor no es válido.");
+			}
+		}
         }  
          
         public void setCorreo ( String correo)throws IllegalArgumentException 
         
         {
            
+            
             if (correo==null)
         
                 throw new IllegalArgumentException("El correo del profesor no puede ser nulo.");
@@ -103,6 +102,7 @@ public class Profesor {
             
             this.correo=correo;
         }  
+        
         
         
         
